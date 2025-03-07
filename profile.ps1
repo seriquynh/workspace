@@ -10,21 +10,11 @@ function Write-Info {
     Write-Host $Message -ForegroundColor Green
 }
 
-Write-Info "Loading $baseDir\profile.ps1"
-
-if (-not (Test-Path 'Alias:which')) {
-    Set-Alias -Name which -Value Get-Command
-    Write-Info "Created 'which' alias for Get-Command"
-}
+Write-Info "Loading profile.ps1"
 
 if (-not (Test-Path 'Alias:pstorm')) {
     Set-Alias -Name pstorm -Value PhpStorm1
     Write-Info "Created 'pstorm' alias for PhpStorm1"
-}
-
-if (-not (Test-Path 'Alias:grep')) {
-    Set-Alias -Name grep -Value Select-String
-    Write-Info "Created 'grep' alias for Select-String"
 }
 
 $devctlFile = 'D:\Quinx\Tools\devops\devctl.ps1'
@@ -45,18 +35,6 @@ function Invoke-GitAdd {
 
 function Invoke-GitFetch {
     git fetch origin --prune
-}
-
-function Invoke-GitCommitMessage {
-    param(
-        [Parameter(Mandatory)]
-        [string]$Message
-
-    # [Parameter(Mandatory=$false)]  # Optional parameter
-    # [string]$Greeting = "Hello"    # Default value
-    )
-
-    git commit -m $Message -S
 }
 
 if (-not (Test-Path 'Alias:gs')) {
