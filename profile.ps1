@@ -1,3 +1,9 @@
+$PowerShellProfileDir = "$HOME\Documents\WindowsPowerShell"
+
+if (Test-Path "$HOME\OneDrive\Documents\WindowsPowerShell") {
+    $PowerShellProfileDir = "$HOME\OneDrive\Documents\WindowsPowerShell"
+}
+
 function Write-Info {
     param(
         [Parameter(Mandatory)]
@@ -12,42 +18,53 @@ function Write-Info {
 
 Write-Info "Loading profile.ps1"
 
-if (-not (Test-Path 'Alias:pstorm')) {
-    Set-Alias -Name pstorm -Value PhpStorm1
-    Write-Info "Created 'pstorm' alias for PhpStorm1"
-}
+Write-Output ""
 
-$devctlFile = 'D:\Quinx\Tools\devops\devctl.ps1'
-if (Test-Path $devctlFile) {
-    Set-Alias -Name devctl -Value $devctlFile
-    Write-Info "Created 'devctl' alias for $devctlFile"
+Write-Info " * Custom commands, functions or scripts:"
+
+$devFile = "$PowerShellProfileDir\dev.ps1"
+if (Test-Path $devFile) {
+    Set-Alias -Name dev -Value $devFile
+    Write-Info "    -> Created 'dev' alias for $devFile"
 }
 
 # Git
 
-function Invoke-GitStatus {
-    git status $args
+#function Invoke-GitStatus {
+#    git status $args
+#}
+#
+#function Invoke-GitAdd {
+#    git add $args
+#}
+#
+#function Invoke-GitFetch {
+#    git fetch origin --prune
+#}
+#
+#if (-not (Test-Path 'Alias:gs')) {
+#    Set-Alias -Name 'gs' -Value Invoke-GitStatus
+#    Write-Info "Created 'gs' alias for git status"
+#}
+#
+#if (-not (Test-Path 'Alias:ga')) {
+#    Set-Alias -Name 'ga' -Value Invoke-GitAdd
+#    Write-Info "Created 'ga' alias for git add"
+#}
+#
+#if (-not (Test-Path 'Alias:gf')) {
+#    Set-Alias -Name 'gf' -Value Invoke-GitFetch
+#    Write-Info "Created 'gf' alias for git fetch origin --prune"
+#}
+
+Write-Output ""
+
+Write-Info " * Built-in commands, functions or scripts:"
+
+if (-not (Test-Path 'Alias:pstorm')) {
+    Set-Alias -Name pstorm -Value PhpStorm1
+    Write-Info "    -> Created 'pstorm' alias for PhpStorm1"
 }
 
-function Invoke-GitAdd {
-    git add $args
-}
 
-function Invoke-GitFetch {
-    git fetch origin --prune
-}
-
-if (-not (Test-Path 'Alias:gs')) {
-    Set-Alias -Name 'gs' -Value Invoke-GitStatus
-    Write-Info "Created 'gs' alias for git status"
-}
-
-if (-not (Test-Path 'Alias:ga')) {
-    Set-Alias -Name 'ga' -Value Invoke-GitAdd
-    Write-Info "Created 'ga' alias for git add"
-}
-
-if (-not (Test-Path 'Alias:gf')) {
-    Set-Alias -Name 'gf' -Value Invoke-GitFetch
-    Write-Info "Created 'gf' alias for git fetch origin --prune"
-}
+Write-Output ""
