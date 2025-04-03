@@ -1,0 +1,25 @@
+.fleet/
+.idea/
+.nova/
+.vscode/
+.zed/
+
+.phpunit.cache/
+.phpunit.result.cache
+phpunit.xml
+
+.php-cs-fixer
+.php-cs-fixer.cache
+
+*.phar
+
+# Backup PHP files
+*-BAK.php
+
+# Laravel IDE helper
+.phpstorm.meta.php
+_ide_helper.php
+_ide_helper_models.php
+
+# MacOS specific files
+.DS_Store
